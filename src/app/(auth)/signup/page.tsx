@@ -29,10 +29,18 @@ export default function Page() {
     onSuccess: (res) => {
       const { success, message } = res;
       if (success) {
-        toast.success(message);
+        toast.success(message, {
+          style: {
+            background: "#3b82f6", // 파란색
+          },
+        });
         router.push("/login");
       } else {
-        toast.error(message);
+        toast.error(message, {
+          style: {
+            background: "#ef4444", // 빨간색
+          },
+        });
       }
     },
   });

@@ -26,11 +26,19 @@ function CalculateButton({
         });
         // 전역 상태 적용 또는 라우터 이동은 여기에 추가 가능
       } else {
-        toast.error(message);
+        toast.error(message, {
+          style: {
+            background: "#ef4444", // 빨간색
+          },
+        });
       }
     },
     onError: (error) => {
-      toast.error(error.message);
+      toast.error(error.message, {
+        style: {
+          background: "#ef4444", // 빨간색
+        },
+      });
     },
   });
 

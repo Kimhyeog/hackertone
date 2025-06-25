@@ -77,7 +77,7 @@ export default function WaitingPage() {
       />
       <h2 className="text-center text-md font-bold mb-4">현재 대기 시간</h2>
 
-      <RestaurantCurrentTime location={0} weekday={2} />
+      <RestaurantCurrentTime location={selectedLocation} weekday={3} />
 
       {selectedRestaurant && (
         <div className="mb-6">

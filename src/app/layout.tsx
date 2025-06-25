@@ -24,10 +24,14 @@ export default function RootLayout({
       <body className={`${cuteFont.variable} antialiased`}>
         <Provider>{children}</Provider>
         <Toaster
-          // position
           position="top-center"
-          // duration : 3초
           duration={3000}
+          toastOptions={{
+            style: {
+              color: "#fff",
+              fontWeight: 500,
+            },
+          }}
         />
       </body>
     </html>

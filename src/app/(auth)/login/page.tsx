@@ -30,7 +30,11 @@ export default function Page() {
 
       // 알림 기능
       if (success) {
-        toast.success(message);
+        toast.success(message, {
+          style: {
+            background: "#3b82f6", // 파란색
+          },
+        });
         // 전역상태에 적용
         initUser();
         // 메인 페이지 이동
@@ -38,7 +42,11 @@ export default function Page() {
       } else toast.error(message);
     },
     onError: (error) => {
-      toast.error(error.message);
+      toast.error(error.message, {
+        style: {
+          background: "#ef4444", // 빨간색
+        },
+      });
     },
   });
 
