@@ -6,12 +6,12 @@ import Loading from "@/components/ui/Loading";
 import { useQueryWrapper } from "@/hooks/useQueryWrapper";
 import RestaurantNav from "./components/ReastaurantNav";
 import { useState } from "react";
+import RestaurantChart from "./components/RestaurantChart";
 
 // 타입 정의
 type RestaurantData = {
   time: string;
   expected: number;
-  actual: number;
 };
 
 type Restaurant = {
@@ -30,7 +30,6 @@ const locationNameMap: Record<number, string> = {
 
 export default function WaitingPage() {
   const [selectedLocation, setSelectedLocation] = useState(0);
-  const locationList = Object.keys(locationNameMap).map(Number); // [0, 1, 2, 3]
 
   const queries: ReturnType<typeof useQueryWrapper<GetPreInfoResponse[]>>[] = [
     useQueryWrapper(["preInfo", "0"], () => getPerInfo(0)),
@@ -74,33 +73,9 @@ export default function WaitingPage() {
         onChange={setSelectedLocation}
       />
 
-      <h1 className="text-2xl font-bold text-center mb-6">
-        식당별 대기 시간 정보
-      </h1>
-
       {selectedRestaurant && (
-        <div className="mb-8 p-4 border rounded-lg shadow-sm bg-white">
-          <h2 className="text-lg font-semibold mb-2">
-            {selectedRestaurant.name}
-          </h2>
-          <table className="w-full text-sm text-left border-t border-gray-200">
-            <thead>
-              <tr className="border-b">
-                <th className="p-2">시간</th>
-                <th className="p-2">예상 대기 시간</th>
-                <th className="p-2">실제 대기 시간</th>
-              </tr>
-            </thead>
-            <tbody>
-              {selectedRestaurant.data.map((row, index) => (
-                <tr key={index} className="border-b hover:bg-gray-50">
-                  <td className="p-2">{row.time}</td>
-                  <td className="p-2">{row.expected}분</td>
-                  <td className="p-2">{row.actual}분</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+        <div className="mb-6">
+          <RestaurantChart data={selectedRestaurant.data} />
         </div>
       )}
     </div>

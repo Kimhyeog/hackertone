@@ -15,7 +15,7 @@ function Header() {
 
   const pathToMenuMap: Record<string, string> = {
     "/order": "주문하기",
-    "/wait": "대기시간",
+    "/waiting": "Waiting",
     "/myPage": "마이페이지",
   };
 
@@ -61,7 +61,7 @@ function Header() {
           alt={"헤더 로고"}
         />
         {/* 여기에 메뉴 항목 넣기 */}
-        <p className="text-lg text-white">{currentMenu}</p>
+        <p className="text-sm text-white">{currentMenu}</p>
       </div>
       <div>
         {isLoggedIn ? (

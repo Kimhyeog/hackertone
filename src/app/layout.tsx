@@ -1,23 +1,13 @@
 import type { Metadata } from "next";
-import { Cute_Font, Geist, Geist_Mono } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import { Provider } from "./provider";
 import { Toaster } from "sonner";
 
-const cuteFont = Cute_Font({
-  variable: "--font-cute", //src/global.css에서 사용될 변수명
-  weight: "400",
-  subsets: ["latin"], // 라틴 문자셋만 로드
-});
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const cuteFont = Inter({
   subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  weight: ["400", "500", "700"],
+  variable: "--font-inter",
 });
 
 export const metadata: Metadata = {
