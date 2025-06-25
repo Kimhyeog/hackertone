@@ -3,17 +3,22 @@
 import { getMemusByLocation } from "@/api/order";
 import Loading from "@/components/ui/Loading";
 import { useQueryWrapper } from "@/hooks/useQueryWrapper";
+import { getErrorMeesage } from "@/libs/axios";
 import { Menu } from "@/types/order";
+import { toast } from "sonner";
+import { useState } from "react";
+import RestaurantTabs, { LocationKey } from "./components/RestaurantTabs";
 
 export default function Page() {
-  const location = 1; // 예: 나루또
+  const [location, setLocation] = useState<LocationKey>(1);
 
   const { data, isLoading, isError } = useQueryWrapper(
     ["menus", location.toString()],
     () => getMemusByLocation({ location }),
     {
       onError: (error) => {
-        console.error("메뉴 불러오기 실패:", error);
+        const message = getErrorMeesage(error);
+        toast.error(message);
       },
     }
   );
@@ -29,6 +34,8 @@ export default function Page() {
 
   return (
     <div className="p-4">
+      <RestaurantTabs selected={location} onSelect={setLocation} />
+
       <h1 className="text-xl font-semibold mb-4">메뉴 목록</h1>
       <ul className="space-y-2">
         {data.menus.map((menu: Menu, index: number) => (

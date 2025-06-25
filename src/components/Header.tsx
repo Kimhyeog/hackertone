@@ -60,12 +60,18 @@ function Header() {
     <div className="relative">
       <header className="h-[40px] bg-[#e1924c] flex items-center justify-between px-3">
         <div className="flex justify-center items-center gap-x-2 rounded-lg max-h-[30px]">
-          <Image
-            width={60}
-            height={20}
-            src={"/assets/images/HeaderLogo.png"}
-            alt={"헤더 로고"}
-          />
+          <div
+            onClick={() => {
+              router.push("/Main");
+            }}
+          >
+            <Image
+              width={60}
+              height={20}
+              src={"/assets/images/HeaderLogo.png"}
+              alt={"헤더 로고"}
+            />
+          </div>
           {/* 여기에 메뉴 항목 넣기 */}
           <p className="text-sm text-white">{currentMenu}</p>
         </div>

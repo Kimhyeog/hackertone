@@ -12,6 +12,19 @@
   --font-mono: var(--font-geist-mono);
 }
 
+/* globals.css 또는 전역 CSS */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+}
+
+
 /* global.css 또는 Tailwind 설정 */
 .no-scrollbar::-webkit-scrollbar {
   display: none;
