@@ -45,8 +45,8 @@ function Header() {
   };
 
   useEffect(() => {
-    initUser();
-  }, [initUser, isLoggedIn, userInfo]);
+    useUserStore.getState().initUser(); // 또는 initUser()
+  }, []);
 
   // /assets/images/loginLogo.png
 
@@ -58,7 +58,7 @@ function Header() {
         <div className="flex justify-center items-center gap-x-2 rounded-lg max-h-[30px]">
           <div
             onClick={() => {
-              router.push("/Main");
+              router.push("/");
             }}
           >
             <Image
