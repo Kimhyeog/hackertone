@@ -8,22 +8,25 @@ import Input from "@/components/ui/Input";
 const locationNameMap: Record<number, string> = {
   0: "아지오",
   1: "나루또",
-  2: "진관키친",
-  3: "계절밥상",
+  2: "김밥천국",
+  3: "진관키친",
+  4: "계절밥상",
 };
 
 const locationImages: Record<number, string> = {
   0: "/assets/images/restaurants/학생회관.png",
   1: "/assets/images/restaurants/학생회관.png",
-  2: "/assets/images/restaurants/진관홀.png",
-  3: "/assets/images/restaurants/계절밥상.png",
+  2: "/assets/images/restaurants/학생회관.png",
+  3: "/assets/images/restaurants/진관홀.png",
+  4: "/assets/images/restaurants/계절밥상.png",
 };
 
 const locationBuildingMap: Record<number, string> = {
   0: "학생회관",
   1: "학생회관",
-  2: "진관홀",
-  3: "군자관",
+  2: "학생회관",
+  3: "진관홀",
+  4: "군자관",
 };
 
 interface Props {

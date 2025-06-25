@@ -15,7 +15,7 @@ function Header() {
   const pathname = usePathname();
 
   const pathToMenuMap: Record<string, string> = {
-    "/order": "주문하기",
+    "/recommend": "식당 • 메뉴 추천",
     "/waiting": "Waiting",
     "/myPage": "마이페이지",
   };
@@ -23,10 +23,6 @@ function Header() {
   const currentMenu = pathToMenuMap[pathname] || "";
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  const onClickSearchPage = () => {
-    router.push("/search");
-  };
 
   const onClickLogin = () => {
     router.push("/login");
@@ -80,15 +76,6 @@ function Header() {
             <div className="flex items-center gap-x-2">
               <Button
                 variant="image"
-                src="/assets/images/search.png"
-                alt="검색"
-                className="text-sm text-white whitespace-nowrap px-2 py-1"
-                onClick={onClickSearchPage}
-              >
-                검색
-              </Button>
-              <Button
-                variant="image"
                 src="/assets/images/user.png"
                 alt="마이페이지"
                 className="text-sm text-white whitespace-nowrap px-2 py-1"
@@ -117,15 +104,6 @@ function Header() {
             </div>
           ) : (
             <div className="flex items-center gap-x-2">
-              <Button
-                variant="image"
-                src="/assets/images/search.png"
-                alt="검색"
-                className="text-sm text-white whitespace-nowrap px-2 py-1"
-                onClick={onClickSearchPage}
-              >
-                검색
-              </Button>
               <Button
                 variant="image"
                 src="/assets/images/login.png"

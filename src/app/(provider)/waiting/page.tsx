@@ -25,8 +25,9 @@ type Restaurant = {
 const locationNameMap: Record<number, string> = {
   0: "아지오",
   1: "나루또",
-  2: "진관키친",
-  3: "계절밥상",
+  2: "김밥천국",
+  3: "진관키친",
+  4: "계절밥상",
 };
 
 export default function WaitingPage() {
@@ -37,6 +38,7 @@ export default function WaitingPage() {
     useQueryWrapper(["preInfo", "1"], () => getPerInfo(1)),
     useQueryWrapper(["preInfo", "2"], () => getPerInfo(2)),
     useQueryWrapper(["preInfo", "3"], () => getPerInfo(3)),
+    useQueryWrapper(["preInfo", "4"], () => getPerInfo(4)),
   ];
 
   const isLoading = queries.some((q) => q.isLoading);

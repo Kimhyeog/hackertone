@@ -5,11 +5,9 @@ import { useRouter } from "next/navigation";
 interface ContentsMenuProps {
   onClose: () => void;
 }
-
 const pathToMenuMap: Record<string, string> = {
   "/waiting": "식당 대기 시간",
-  "/recommend/restaurant": "식당 추천",
-  "/recommend/food": "메뉴 추천",
+  "/recommend": "식당 • 메뉴 추천",
   "/order": "주문 하기",
 };
 
