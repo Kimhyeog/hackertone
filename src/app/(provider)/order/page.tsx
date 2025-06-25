@@ -4,10 +4,10 @@ import { getMemusByLocation } from "@/api/order";
 import Loading from "@/components/ui/Loading";
 import { useQueryWrapper } from "@/hooks/useQueryWrapper";
 import { getErrorMeesage } from "@/libs/axios";
-import { Menu } from "@/types/order";
 import { toast } from "sonner";
 import { useState } from "react";
 import RestaurantTabs, { LocationKey } from "./components/RestaurantTabs";
+import MenuList from "./components/MenuList";
 
 export default function Page() {
   const [location, setLocation] = useState<LocationKey>(1);
@@ -36,8 +36,10 @@ export default function Page() {
     <div className="p-4">
       <RestaurantTabs selected={location} onSelect={setLocation} />
 
-      <h1 className="text-xl font-semibold mb-4">메뉴 목록</h1>
-      <ul className="space-y-2">
+      <h1 className="text-center text-xl font-semibold pb-2 mb-2 border-b-1">
+        메뉴 목록
+      </h1>
+      {/* <ul className="space-y-2">
         {data.menus.map((menu: Menu, index: number) => (
           <li
             key={index}
@@ -49,7 +51,8 @@ export default function Page() {
             </span>
           </li>
         ))}
-      </ul>
+      </ul> */}
+      <MenuList menus={data.menus} location={location} />
     </div>
   );
 }
