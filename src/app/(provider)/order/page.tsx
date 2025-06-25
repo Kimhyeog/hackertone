@@ -39,19 +39,6 @@ export default function Page() {
       <h1 className="text-center text-xl font-semibold pb-2 mb-2 border-b-1">
         메뉴 목록
       </h1>
-      {/* <ul className="space-y-2">
-        {data.menus.map((menu: Menu, index: number) => (
-          <li
-            key={index}
-            className="p-3 border rounded-md flex justify-between items-center"
-          >
-            <span className="font-medium">{menu.menuName}</span>
-            <span className="text-gray-600">
-              {menu.menuPrice.toLocaleString()}원
-            </span>
-          </li>
-        ))}
-      </ul> */}
       <MenuList menus={data.menus} location={location} />
     </div>
   );

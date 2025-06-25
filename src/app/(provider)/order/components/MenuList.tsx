@@ -1,44 +1,61 @@
-// src/app/(your_path)/components/MenuList.tsx
-
 import { Menu } from "@/types/order";
 import Image from "next/image";
 import { LocationKey, locationMap } from "./RestaurantTabs";
+import { motion } from "framer-motion";
+import { useState } from "react";
 
 interface MenuListProps {
-  menus: Menu[];
+  menus: Menu[]; // 메뉴 배열
   location: LocationKey;
 }
 
 export default function MenuList({ menus, location }: MenuListProps) {
-  const locationName = locationMap[location]; // 예: "나루또"
+  const locationName = locationMap[location];
+  const [focusedIndex, setFocusedIndex] = useState<number | null>(null);
 
   return (
     <ul className="grid grid-cols-2 gap-4">
       {menus.map((menu, index) => {
-        // 이미지 경로 구성
         const imagePath = `/assets/images/foods/${locationName}/${menu.menuName}.png`;
+        const isFocused = focusedIndex === index;
 
         return (
-          <li
+          <motion.li
             key={index}
-            className="p-3 border rounded-md flex flex-col items-center text-center"
+            whileHover={{
+              scale: 1.03,
+              borderColor: "#f97316",
+              backgroundColor: "#fff7ed",
+            }}
+            onFocus={() => setFocusedIndex(index)}
+            onBlur={() => setFocusedIndex(null)}
+            tabIndex={0}
+            className="relative bg-white p-4 border border-gray-200 rounded-xl flex flex-col items-center text-center focus:outline-none transition-all duration-200"
           >
             <Image
               src={imagePath}
               alt={menu.menuName}
               width={100}
               height={100}
-              className="object-cover rounded-md mb-2"
-              onError={(e) => {
-                // next/image는 fallback 대체가 직접 지원되지 않기 때문에,
-                // 이미지 누락 시 대비하려면 <img>로 대체하거나 모든 이미지를 준비해야 합니다.
-              }}
+              className="object-cover rounded-lg mb-3 border border-gray-100"
             />
-            <span className="font-medium">{menu.menuName}</span>
-            <span className="text-gray-600">
+            <span className="font-semibold text-base text-gray-900">
+              {menu.menuName}
+            </span>
+            <span className="text-sm text-orange-500 mt-1">
               {menu.menuPrice.toLocaleString()}원
             </span>
-          </li>
+
+            {/* + 버튼: focus 상태일 때만 표시 */}
+            {isFocused && (
+              <button
+                className="absolute bottom-2 right-2 w-8 h-8 rounded-full bg-orange-500 text-white flex items-center justify-center text-2xl font-bold shadow-md hover:bg-orange-600 transition"
+                aria-label={`${menu.menuName} 추가`}
+              >
+                <span className="mb-1.5">+</span>
+              </button>
+            )}
+          </motion.li>
         );
       })}
     </ul>
