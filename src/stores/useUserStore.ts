@@ -1,55 +1,61 @@
-// type 선언
+// src/stores/useUserStore.ts
 
 import { checkLoginState, getUserInfo, logout } from "@/api/user";
-import { UserInfo } from "@/types/user";
+import { GetUserInfoRequest } from "@/types/user";
 import { toast } from "sonner";
 import { create } from "zustand";
 
 type UserStore = {
-  // 필드
+  // 상태
   isLoggedIn: boolean;
-  userInfo: UserInfo | null;
+  isAuthChecked: boolean;
+  userInfo: GetUserInfoRequest | null;
 
-  // 메소드
-  /*
-    - 로그인상태 설정 메소드 : setIsLoggedInState
-
-    - 유저 정보 fetch 메소드 : fetchUserInfo
-  
-    - 로그아웃을 위한 필드 초기화 메소드 : clearUser
-
-    - 필드 확인 메소드 : initUser
-
-  */
-
+  // 액션
   setIsLoggedInState: (isLoggedIn: boolean) => void;
-
+  setIsAuthChecked: (checked: boolean) => void;
   fetchUserInfo: () => Promise<void>;
-
   clearUser: () => Promise<void>;
-
   initUser: () => Promise<void>;
 };
 
 export const useUserStore = create<UserStore>((set) => ({
   isLoggedIn: false,
-
+  isAuthChecked: false,
   userInfo: null,
 
-  setIsLoggedInState: (isLoggedIn: boolean) => set({ isLoggedIn: isLoggedIn }),
+  setIsLoggedInState: (isLoggedIn) => set({ isLoggedIn }),
+
+  setIsAuthChecked: (checked) => set({ isAuthChecked: checked }),
 
   fetchUserInfo: async () => {
     try {
       const { isLoggedIn } = await checkLoginState();
+
       if (!isLoggedIn) {
-        set({ isLoggedIn: false, userInfo: null });
+        set({
+          isLoggedIn: false,
+          userInfo: null,
+          isAuthChecked: true,
+        });
         return;
       }
-      const { userInfo } = await getUserInfo();
-      set({ isLoggedIn: true, userInfo });
+
+      const userInfo = await getUserInfo();
+
+      set({
+        isLoggedIn: true,
+        userInfo,
+        isAuthChecked: true,
+      });
     } catch (error) {
+      console.error("유저 정보 가져오기 실패", error);
       toast.error("유저 정보를 불러오는 데 실패했습니다.");
-      console.error(error);
+      set({
+        isLoggedIn: false,
+        userInfo: null,
+        isAuthChecked: true,
+      });
     }
   },
 
@@ -58,18 +64,22 @@ export const useUserStore = create<UserStore>((set) => ({
       const { success, message } = await logout();
 
       if (success) {
-        set({ isLoggedIn: false, userInfo: null });
+        set({
+          isLoggedIn: false,
+          userInfo: null,
+          isAuthChecked: true,
+        });
         toast.success(message);
       } else {
         toast.error(message);
       }
     } catch (error) {
+      console.error("로그아웃 실패", error);
       toast.error("로그아웃 중 오류가 발생했습니다.");
-      console.error(error);
     }
   },
 
   initUser: async () => {
-    useUserStore.getState().fetchUserInfo();
+    await useUserStore.getState().fetchUserInfo();
   },
 }));

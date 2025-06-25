@@ -53,10 +53,12 @@ export default function Page() {
       </div>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="w-full bg-white border-green-600 flex flex-col gap-y-3 px-3 py-5 rounded-2xl"
+        className="w-full bg-white flex flex-col gap-y-1 px-3 py-5 rounded-2xl"
       >
         {/* 이름 입력폼 */}
-        <label htmlFor="userName">Name</label>
+        <label htmlFor="userName" className="text-lg">
+          Name
+        </label>
         <Input
           id="userName"
           type="text"
@@ -69,7 +71,9 @@ export default function Page() {
           <p className="text-sm text-red-500">{errors.userName.message}</p>
         )}
         {/* 아이디 입력폼 */}
-        <label htmlFor="userId">ID</label>
+        <label htmlFor="userId" className="text-lg">
+          ID
+        </label>
         <Input
           id="userId"
           type="text"
@@ -116,7 +120,9 @@ export default function Page() {
         )}
 
         {/* 비밀번호 입력폼 */}
-        <label htmlFor="userPassword">Password</label>
+        <label htmlFor="userPassword" className="text-lg">
+          Password
+        </label>
         <Input
           id="userPassword"
           type="password"
@@ -130,7 +136,9 @@ export default function Page() {
         )}
 
         {/* 생년월일 입력폼 */}
-        <label htmlFor="userBirthday">BirthDay</label>
+        <label htmlFor="userBirthday" className="text-lg">
+          BirthDay
+        </label>
         <Input
           id="userBirthday"
           type="date"
@@ -146,7 +154,7 @@ export default function Page() {
         )}
         {/* 성별 입력폼 */}
         <div>
-          <div>Gender</div>
+          <div className="text-lg">Gender</div>
           <div className="flex flex-row items-center gap-x-2">
             <label
               htmlFor="gender-male"

@@ -4,10 +4,22 @@ import { useUserStore } from "@/stores/useUserStore";
 import { useRouter } from "next/navigation";
 import Button from "./ui/Button";
 import { useEffect } from "react";
+import Image from "next/image";
+import { usePathname } from "next/navigation";
 
 function Header() {
   const { isLoggedIn, userInfo, initUser, clearUser } = useUserStore();
   const router = useRouter();
+
+  const pathname = usePathname();
+
+  const pathToMenuMap: Record<string, string> = {
+    "/order": "주문하기",
+    "/wait": "대기시간",
+    "/myPage": "마이페이지",
+  };
+
+  const currentMenu = pathToMenuMap[pathname] || "";
 
   const onClickSearchPage = () => {
     router.push("/search");
@@ -40,9 +52,16 @@ function Header() {
   // /assets/images/loginLogo.png
 
   return (
-    <header className="h-[40px] bg-green-700 flex items-center justify-between px-3">
-      <div className="flex justify-center items-center bg-white rounded-lg max-h-[30px] w-[80px]">
-        <p>로고</p>
+    <header className="h-[40px] bg-[#e1924c] flex items-center justify-between px-3">
+      <div className="flex justify-center items-center gap-x-2 rounded-lg max-h-[30px]">
+        <Image
+          width={60}
+          height={20}
+          src={"/assets/images/HeaderLogo.png"}
+          alt={"헤더 로고"}
+        />
+        {/* 여기에 메뉴 항목 넣기 */}
+        <p className="text-lg text-white">{currentMenu}</p>
       </div>
       <div>
         {isLoggedIn ? (

@@ -10,7 +10,6 @@ import {
   SignUpRequest,
   SignUpResponse,
 } from "@/types/user";
-import { UserInfo } from "os";
 
 // 로그인 상태 여부 API 함수
 export const checkLoginState = async (): Promise<CheckLoginStateResponse> => {

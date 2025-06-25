@@ -12,12 +12,12 @@ import { useQueryWrapper } from "@/hooks/useQueryWrapper";
 import { GetUserInfoRequest } from "@/types/user";
 
 export default function Page() {
-  const { isLoggedIn } = useUserStore();
+  const { isLoggedIn, isAuthChecked } = useUserStore();
   const router = useRouter();
 
   const { data, isLoading, isError, error } =
     useQueryWrapper<GetUserInfoRequest>(["userInfo"], getUserInfo, {
-      enabled: !!isLoggedIn,
+      enabled: isLoggedIn,
       staleTime: 1000 * 60 * 5,
       onError: (error) => {
         const message = getErrorMeesage(error);
@@ -26,13 +26,23 @@ export default function Page() {
     });
 
   useEffect(() => {
-    if (!isLoggedIn) {
+    if (isAuthChecked && !isLoggedIn) {
       Swal.fire("Error", "로그인이 필요한 페이지입니다.", "error").then(() => {
         router.push("/login");
       });
     }
-  }, [isLoggedIn, router]);
+  }, [isAuthChecked, isLoggedIn, router]);
 
+  // 로그인 여부 확인이 끝나기 전에는 로딩 표시
+  if (!isAuthChecked) {
+    return (
+      <div className="w-full min-h-screen flex items-center justify-center">
+        <Loading />
+      </div>
+    );
+  }
+
+  // 로그인 안 된 경우엔 위 useEffect에서 리다이렉트 예정
   if (!isLoggedIn) return null;
 
   if (isLoading)

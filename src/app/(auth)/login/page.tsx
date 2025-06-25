@@ -34,7 +34,7 @@ export default function Page() {
         // 전역상태에 적용
         initUser();
         // 메인 페이지 이동
-        router.push("/myPage");
+        router.push("/Main");
       } else toast.error(message);
     },
     onError: (error) => {
@@ -58,10 +58,10 @@ export default function Page() {
       </div>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="w-full bg-white border-green-600 flex flex-col gap-y-3 px-3 py-5 rounded-2xl"
+        className="w-full bg-white flex flex-col gap-y-1 px-3 py-5 rounded-2xl"
       >
-        <label htmlFor="userId" className="text-sm font-medium text-gray-700">
-          아이디
+        <label htmlFor="userId" className="text-lg font-medium text-gray-700">
+          ID
         </label>
         {/* <input
           id="userId"
@@ -82,13 +82,13 @@ export default function Page() {
           error={errors.userId?.message}
         />
         {errors.userId && (
-          <p className="text-sm text-red-500">{errors.userId.message}</p>
+          <p className="text-md text-red-500">{errors.userId.message}</p>
         )}
         <label
           htmlFor="userPassword"
           className="text-sm font-medium text-gray-700"
         >
-          비밀번호
+          PASSWORD
         </label>
         <Input
           id="userPassword"
@@ -100,7 +100,7 @@ export default function Page() {
           error={errors.userPassword?.message}
         />
         {errors.userPassword && (
-          <p className="text-sm text-red-500">{errors.userPassword.message}</p>
+          <p className="text-md text-red-500">{errors.userPassword.message}</p>
         )}
         {/* <button
           className="w-full bg-green-700 text-white text-lg font-bold rounded-2xl"

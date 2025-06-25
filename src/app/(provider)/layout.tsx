@@ -4,7 +4,7 @@ import type { ReactNode } from "react";
 
 export default function Layout({ children }: { children: ReactNode }) {
   return (
-    <div className="w-full min-h-screen bg-white text-gray-800">
+    <div className="w-full min-h-screen bg-white white">
       <div className="mx-auto bg-white rounded-lg">
         <Header />
         {children}

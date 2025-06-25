@@ -37,7 +37,7 @@ function Button({
     <button
       disabled={disabled}
       className={clsx(
-        "bg-green-700 text-white text-md font-bold rounded-2xl py-2 transition cursor-pointer",
+        "bg-orange-600 text-white text-md font-bold rounded-2xl py-2 hover:bg-orange-700 focus:bg-orange-800 transition cursor-pointer",
         disabled && "opacity-50 cursor-not-allowed",
         className // 마지막에 넣기! 사용자 지정 className이 우선순위 갖게 됨
       )}

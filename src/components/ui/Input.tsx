@@ -16,7 +16,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
           ref={ref}
           type="radio"
           className={clsx(
-            "cursor-pointer appearance-none box-border w-4 h-4 border-2 border-gray-300 bg-white rounded-full checked:bg-green-600 checked:border-transparent",
+            "cursor-pointer appearance-none box-border w-4 h-4 border-2 border-gray-300 bg-white rounded-full checked:bg-orange-500 checked:border-transparent",
             error && "border-red-500",
             className
           )}
@@ -31,7 +31,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
           ref={ref}
           type="radio"
           className={clsx(
-            "hidden cursor-pointer appearance-none box-border w-4 h-4 border-2 border-gray-300 bg-white rounded-full checked:bg-green-600 checked:border-transparent",
+            "hidden cursor-pointer appearance-none box-border w-4 h-4 border-2 border-gray-300 bg-white rounded-full checked:bg-orange-500 checked:border-transparent",
             error && "border-red-500",
             className
           )}
@@ -47,7 +47,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
         // className
         type={type}
         className={clsx(
-          "w-full box-border bg-gray-50 border-2 border-dotted rounded-lg px-2 py-1 text-sm cursor-pointer file:mr-4 file:py-1 file:px-2 file:rounded-lg file:border-0 file:text-sm file:bg-green-600 file:text-white hover:file:bg-green-700",
+          "w-full box-border bg-gray-50 border-2 rounded-lg px-2 py-1 text-sm cursor-pointer file:mr-4 file:py-1 file:px-2 file:rounded-lg file:border-0 file:text-sm file:bg-orange-600 file:text-white hover:file:bg-orange-700",
           error ? "border-red-500" : "border-gray-400",
           className
         )}
