@@ -1,0 +1,117 @@
+"use client";
+
+import Image from "next/image";
+import clsx from "clsx";
+import { useState } from "react";
+
+const locationNameMap: Record<number, string> = {
+  0: "아지오",
+  1: "나루또",
+  2: "진관키친",
+  3: "계절밥상",
+};
+
+const locationImages: Record<number, string> = {
+  0: "/assets/images/restaurants/학생회관.png",
+  1: "/assets/images/restaurants/학생회관.png",
+  2: "/assets/images/restaurants/진관홀.png",
+  3: "/assets/images/restaurants/군자관.png",
+};
+
+const locationBuildingMap: Record<number, string> = {
+  0: "학생회관",
+  1: "학생회관",
+  2: "진관홀",
+  3: "군자관",
+};
+
+interface Props {
+  selectedLocation: number;
+  onChange: (location: number) => void;
+}
+
+export default function RestaurantNav({ selectedLocation, onChange }: Props) {
+  const [activeBuilding, setActiveBuilding] = useState("학생회관");
+
+  // 건물 리스트 추출
+  const buildingList = Array.from(new Set(Object.values(locationBuildingMap)));
+
+  // 현재 선택된 건물에 해당하는 식당들
+  const filteredLocations = Object.entries(locationNameMap).filter(
+    ([key]) => locationBuildingMap[Number(key)] === activeBuilding
+  );
+
+  return (
+    <div className="bg-white p-4 rounded-lg shadow-md mb-4">
+      <h2 className="text-lg font-bold mb-4">식당 선택</h2>
+
+      {/* Building Nav */}
+      <div className="flex gap-3 mb-4">
+        {buildingList.map((building) => (
+          <button
+            key={building}
+            onClick={() => setActiveBuilding(building)}
+            className={clsx(
+              "px-4 py-2 rounded-full font-medium text-sm transition",
+              activeBuilding === building
+                ? "bg-orange-500 text-white"
+                : "bg-gray-200 text-gray-800 hover:bg-gray-300"
+            )}
+          >
+            {building}
+          </button>
+        ))}
+      </div>
+
+      {/* Radio List */}
+      <div className="flex flex-col gap-3">
+        {filteredLocations.map(([key, name]) => {
+          const locationNum = Number(key);
+          const imageSrc = locationImages[locationNum];
+
+          return (
+            <label
+              key={locationNum}
+              className={clsx(
+                "flex items-center gap-3 p-3 rounded-lg border cursor-pointer transition",
+                selectedLocation === locationNum
+                  ? "border-blue-500 bg-blue-50"
+                  : "border-gray-300 hover:bg-gray-50"
+              )}
+            >
+              <input
+                type="radio"
+                name="location"
+                value={locationNum}
+                checked={selectedLocation === locationNum}
+                onChange={() => onChange(locationNum)}
+                className="accent-blue-500"
+              />
+              <div className="w-12 h-12 rounded overflow-hidden">
+                <Image
+                  src={imageSrc}
+                  alt={name}
+                  width={48}
+                  height={48}
+                  className="object-cover w-full h-full"
+                />
+              </div>
+              <span className="text-sm font-medium">{name}</span>
+            </label>
+          );
+        })}
+      </div>
+
+      {/* 선택된 식당 이미지 (하단 100% 너비) */}
+      <div className="mt-6">
+        <Image
+          src={locationImages[selectedLocation]}
+          alt={locationNameMap[selectedLocation]}
+          width={800}
+          height={400}
+          className="w-full h-auto rounded-lg border object-cover"
+        />
+      </div>
+    </div>
+  );
+}

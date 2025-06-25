@@ -12,6 +12,16 @@
   --font-mono: var(--font-geist-mono);
 }
 
+/* global.css 또는 Tailwind 설정 */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
 /* globals.css 등에서 react-calendar 스타일 초기화 */
 .react-calendar {
   border: none;
