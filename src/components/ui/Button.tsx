@@ -6,6 +6,7 @@ type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   variant?: "image" | "default";
   src?: string;
   alt?: string;
+  size?: number;
 
   onClick?: () => void;
 };
@@ -17,6 +18,7 @@ function Button({
   onClick,
   src,
   alt,
+  size = 20,
   variant = "default",
   ...props
 }: ButtonProps) {
@@ -24,8 +26,8 @@ function Button({
     return (
       <div onClick={onClick} className="inline-block cursor-pointer">
         <Image
-          width={20}
-          height={20}
+          width={size}
+          height={size}
           // 무조건 src가 null 값이 아니라는 것을 선언
           src={src!}
           alt={alt || "button image"}

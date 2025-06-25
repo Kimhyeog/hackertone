@@ -34,7 +34,7 @@ export default function Page() {
         // 전역상태에 적용
         initUser();
         // 메인 페이지 이동
-        router.push("/Main");
+        router.push("/waiting");
       } else toast.error(message);
     },
     onError: (error) => {

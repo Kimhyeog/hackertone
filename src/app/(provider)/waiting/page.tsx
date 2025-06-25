@@ -7,6 +7,7 @@ import { useQueryWrapper } from "@/hooks/useQueryWrapper";
 import RestaurantNav from "./components/ReastaurantNav";
 import { useState } from "react";
 import RestaurantChart from "./components/RestaurantChart";
+import RestaurantCurrentTime from "./components/RestaurantCurrentTime";
 
 // 타입 정의
 type RestaurantData = {
@@ -72,6 +73,9 @@ export default function WaitingPage() {
         selectedLocation={selectedLocation}
         onChange={setSelectedLocation}
       />
+      <h2 className="text-center text-md font-bold mb-4">현재 대기 시간</h2>
+
+      <RestaurantCurrentTime location={0} weekday={2} />
 
       {selectedRestaurant && (
         <div className="mb-6">
