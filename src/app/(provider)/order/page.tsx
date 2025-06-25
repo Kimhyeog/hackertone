@@ -5,10 +5,11 @@ import Loading from "@/components/ui/Loading";
 import { useQueryWrapper } from "@/hooks/useQueryWrapper";
 import { getErrorMeesage } from "@/libs/axios";
 import { toast } from "sonner";
-import { useState, useMemo } from "react";
+import { useState, useMemo, SetStateAction } from "react";
 import RestaurantTabs, { LocationKey } from "./components/RestaurantTabs";
 import MenuList from "./components/MenuList";
 import { Menu } from "@/types/order";
+import CalculateButton from "./components/CalculateButton";
 
 export default function Page() {
   const [location, setLocation] = useState<LocationKey>(1);
@@ -64,8 +65,10 @@ export default function Page() {
       />
 
       <div className="text-right text-lg font-semibold text-gray-800 mt-4">
-        총 합계:{" "}
-        <span className="text-orange-600">{totalPrice.toLocaleString()}원</span>
+        <CalculateButton
+          totalPrice={totalPrice.toLocaleString()}
+          setSelectedCounts={setSelectedCounts}
+        />
       </div>
     </div>
   );
