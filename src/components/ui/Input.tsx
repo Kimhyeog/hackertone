@@ -47,7 +47,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
         // className
         type={type}
         className={clsx(
-          "w-full box-border bg-gray-50 border-2 rounded-lg px-2 py-1 text-sm cursor-pointer file:mr-4 file:py-1 file:px-2 file:rounded-lg file:border-0 file:text-sm file:bg-orange-600 file:text-white hover:file:bg-orange-700",
+          "w-full box-border bg-gray-50 border-2 rounded-lg px-2 py-1 text-gray-400 text-md font-bold cursor-pointer file:mr-4 file:py-1 file:px-2 file:rounded-lg file:border-0 file:text-sm file:bg-orange-600 file:text-white hover:file:bg-orange-700",
           error ? "border-red-500" : "border-gray-400",
           className
         )}

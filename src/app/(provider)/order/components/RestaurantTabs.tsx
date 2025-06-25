@@ -1,7 +1,7 @@
 // src/components/ui/RestaurantTabs.tsx
 
 "use client";
-
+import { motion } from "framer-motion";
 import clsx from "clsx";
 import { useRef } from "react";
 
@@ -45,18 +45,21 @@ export default function RestaurantTabs({ selected, onSelect }: Props) {
           const isSelected = Number(key) === selected;
 
           return (
-            <button
+            <motion.button
               key={key}
               onClick={() => onSelect(Number(key) as LocationKey)}
-              className={clsx(
-                "px-4 py-2 text-sm rounded-full snap-start min-w-fit font-semibold transition-all duration-200 ease-in-out",
-                isSelected
-                  ? "bg-orange-500 text-white shadow-md scale-105"
-                  : "bg-gray-100 text-gray-700 hover:bg-gray-200 hover:scale-105"
-              )}
+              whileTap={{ scale: 0.95 }}
+              whileHover={{ scale: 1.05 }}
+              animate={{
+                scale: isSelected ? 1.1 : 1,
+                backgroundColor: isSelected ? "#f97316" : "#f3f4f6",
+                color: isSelected ? "#ffffff" : "#374151",
+              }}
+              transition={{ type: "spring", stiffness: 300, damping: 20 }}
+              className="px-4 py-2 text-sm rounded-full snap-start min-w-fit font-semibold shadow-sm"
             >
               {name}
-            </button>
+            </motion.button>
           );
         }
       )}

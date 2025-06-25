@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { ClipLoader } from "react-spinners";
 
 function Loading() {
   return (
@@ -10,6 +11,13 @@ function Loading() {
         alt="로딩 로고"
       />
       <p className="text-2xl">Loading ...</p>
+      <ClipLoader
+        cssOverride={{
+          borderWidth: "6px", // 기본은 2px 또는 3px → 더 두껍게
+        }}
+        color="#FFFFFF"
+        size={40}
+      />
     </div>
   );
 }

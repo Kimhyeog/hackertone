@@ -56,7 +56,7 @@ export default function RestaurantNav({ selectedLocation, onChange }: Props) {
             key={building}
             onClick={() => setActiveBuilding(building)}
             className={clsx(
-              "px-4 py-2 rounded-full font-medium text-sm transition",
+              "px-4 py-2 rounded-full text-md font-bold transition",
               activeBuilding === building
                 ? "bg-orange-500 text-white"
                 : "bg-gray-200 text-gray-800 hover:bg-gray-300"
@@ -104,8 +104,10 @@ export default function RestaurantNav({ selectedLocation, onChange }: Props) {
               </div>
               <span
                 className={clsx(
-                  "text-sm font-medium",
-                  isSelected ? "text-orange-800" : "text-gray-800"
+                  "text-sm font-bold",
+                  isSelected
+                    ? "text-orange-700 text-md font-extrabold"
+                    : "text-gray-800"
                 )}
               >
                 {name}

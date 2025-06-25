@@ -68,7 +68,7 @@ export default function Page() {
         onSubmit={handleSubmit(onSubmit)}
         className="w-full bg-white flex flex-col gap-y-1 px-3 py-5 rounded-2xl"
       >
-        <label htmlFor="userId" className="text-lg font-medium text-gray-700">
+        <label htmlFor="userId" className="text-md font-bold text-gray-700">
           ID
         </label>
         {/* <input
@@ -94,7 +94,7 @@ export default function Page() {
         )}
         <label
           htmlFor="userPassword"
-          className="text-sm font-medium text-gray-700"
+          className="text-md font-bold text-gray-700"
         >
           PASSWORD
         </label>

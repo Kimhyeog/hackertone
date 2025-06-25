@@ -24,19 +24,19 @@ export default function MenuItem({
       }}
       tabIndex={0}
       onClick={onClick}
-      className="relative bg-white p-4 border border-gray-200 rounded-xl flex flex-col items-center text-center focus:outline-none transition-all duration-200"
+      className="relative bg-white p-4 border-1 border-gray-200 rounded-xl flex flex-col items-center text-center focus:outline-none transition-all duration-200"
     >
       <Image
         src={imagePath}
         alt={menu.menuName}
         width={100}
         height={100}
-        className="object-cover rounded-lg mb-3 border border-gray-100"
+        className="w-[100px] h-[100px] object-cover rounded-lg mb-3 border border-gray-100"
       />
       <span className="font-semibold text-base text-gray-900">
         {menu.menuName}
       </span>
-      <span className="text-sm text-orange-500 mt-1">
+      <span className="text-sm text-orange-500 font-bold mt-1">
         {menu.menuPrice.toLocaleString()}원
       </span>
 
