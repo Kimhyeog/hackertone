@@ -25,7 +25,7 @@ function ContentsMenu({ onClose }: ContentsMenuProps) {
         {Object.entries(pathToMenuMap).map(([path, label]) => (
           <li
             key={path}
-            className="px-4 py-2 text-sm hover:bg-gray-100 cursor-pointer"
+            className="px-4 py-4 text-md font-medium hover:bg-gray-100 cursor-pointer"
             onClick={() => handleClick(path)}
           >
             {label}
