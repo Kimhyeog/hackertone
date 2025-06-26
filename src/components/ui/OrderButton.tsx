@@ -2,13 +2,17 @@
 
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 
 function OrderButton() {
   const router = useRouter();
+  const pathname = usePathname();
 
   const orderFoodClick = () => {
     router.push("/order");
   };
+
+  if (pathname === "/order") return null;
 
   return (
     <div className="fixed bottom-5 right-5 z-50 group">
